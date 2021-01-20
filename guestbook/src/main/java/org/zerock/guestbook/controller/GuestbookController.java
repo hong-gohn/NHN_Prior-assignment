@@ -41,7 +41,7 @@ public class GuestbookController {
     }
 
     @PostMapping("/register")
-    public String registerPost(GuestbookDTO dto, RedirectAttributes redirectAttributes){
+    public String registerPost(GuestbookDTO dto, RedirectAttributes redirectAttributes) {
         log.info("dto......" + dto);
 
         Long gno = service.register(dto);
@@ -67,5 +67,18 @@ public class GuestbookController {
 
         redirectAttributes.addFlashAttribute("msg",gno);
         return "redirect:/guestbook/list";
+    }
+
+    @PostMapping("/modify")
+    public String modify(GuestbookDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes){
+        log.info("post modify .....................");
+        log.info("dto: "+dto);
+
+        service.modify(dto);
+
+        redirectAttributes.addAttribute("page",requestDTO.getPage());
+        redirectAttributes.addAttribute("gno",dto.getGno());
+
+        return "redirect:/guestbook/read";
     }
 }

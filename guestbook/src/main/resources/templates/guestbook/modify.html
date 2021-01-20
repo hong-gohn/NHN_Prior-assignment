@@ -34,6 +34,10 @@
                 <label >ModDate</label>
                 <input type="text" class = "form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
             </div>
+
+            <!-- 페이지 번호 -->
+            <input type="hidden" name="page" th:value="${requestDTO.page}">
+
         </form>
 
         <button type="button" class="btn btn-primary modifyBtn">Modify</button>
@@ -50,6 +54,32 @@
             .attr("action", "/guestbook/remove")
             .attr("method","post");
 
+        actionForm.submit();
+    });
+
+    $(".modifyBtn").click(function(){
+        if(!confirm("수정하시겠습니까?")){
+            return;
+        }
+
+        actionForm
+            .attr("action", "/guestbook/modify")
+            .attr("method","post")
+            .submit();
+    });
+
+    $(".listBtn").click(function(){
+
+        var pageInfo = $("input[name='page']");
+
+        actionForm.empty();
+        actionForm.append(pageInfo);
+
+        actionForm
+            .attr("action", "/guestbook/list")
+            .attr("method","get");
+
+        console.log(actionForm.html());
         actionForm.submit();
     });
 
