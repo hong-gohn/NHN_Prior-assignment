@@ -10,6 +10,7 @@ import org.zerock.mreview.entity.Movie;
 import org.zerock.mreview.entity.Review;
 
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -17,6 +18,9 @@ import java.util.stream.IntStream;
 public class ReviewRepositoryTests {
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Test
     public void insertMovieReviews(){
@@ -33,6 +37,37 @@ public class ReviewRepositoryTests {
                     .build();
 
             reviewRepository.save(movieReview);
+        });
+    }
+
+    @Commit
+    @Transactional
+    @Test
+    public void testDeleteMember(){
+        Long mid = 1L;
+
+        Member member = Member.builder().mid(mid).build();
+
+        //memberRepository.deleteById(mid);
+        //reviewRepository.deleteByMember(member);
+
+        reviewRepository.deleteByMember(member);
+        reviewRepository.deleteById(mid);
+    }
+
+    @Test
+    public void testGetMovieReviews(){
+
+        Movie movie = Movie.builder().mno(92L).build();
+
+        List<Review> result = reviewRepository.findByMovie(movie);
+
+        result.forEach(movieReview ->{
+            System.out.print(movieReview.getReviewNum());
+            System.out.print("\t"+movieReview.getGrade());
+            System.out.print("\t"+movieReview.getText());
+            System.out.print("\t"+movieReview.getMember().getEmail());
+            System.out.println("-----------------------------------");
         });
     }
 
