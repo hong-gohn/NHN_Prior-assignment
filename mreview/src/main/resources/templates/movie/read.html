@@ -49,7 +49,7 @@
         <div class="uploadResult">
             <ul>
                 <li th:each="movieImage: ${dto.imageDTOList}" >
-                    <img th:if="${movieImage.path != null}" th:src="|/dispaly?fileName=${dto.imageDTOList[0].getThumbnailURL()}|">
+                    <img th:if="${movieImage.path != null}" th:src="|/display?fileName=${movieImage.getThumbnailURL()}|">
                 </li>
             </ul>
         </div>
