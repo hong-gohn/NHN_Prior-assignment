@@ -9,6 +9,8 @@ import org.zerock.guestbook.dto.PageRequestDTO;
 import org.zerock.guestbook.dto.PageResultDTO;
 import org.zerock.guestbook.entity.Guestbook;
 
+import java.sql.SQLOutput;
+
 @SpringBootTest
 public class GuestbookServiceTests {
 
@@ -38,6 +40,30 @@ public class GuestbookServiceTests {
         System.out.println("----------------------------------");
 
         for(GuestbookDTO guestbookDTO:resultDTO.getDtoList()){
+            System.out.println(guestbookDTO);
+        }
+
+        System.out.println("==================================");
+        resultDTO.getPageList().forEach(i -> System.out.println(i));
+    }
+
+    @Test
+    public void testSearch(){
+        PageRequestDTO pageReuestDTO = PageRequestDTO.builder().page(1).size(10).type("tc").keyword("한글").build();
+
+        PageResultDTO<GuestbookDTO,Guestbook> resultDTO = service.getList(pageReuestDTO);
+
+        System.out.println("PREV: " + resultDTO.isPrev());
+        System.out.println("NEXT: " + resultDTO.isNext());
+        System.out.println("TOTAL: " + resultDTO.getTotalPage());
+        System.out.println("----------------------------------");
+
+        for(GuestbookDTO guestbookDTO:resultDTO.getDtoList()){
+            System.out.println(guestbookDTO);
+        }
+
+        System.out.println("==================================");
+        for(GuestbookDTO guestbookDTO : resultDTO.getDtoList()){
             System.out.println(guestbookDTO);
         }
 
