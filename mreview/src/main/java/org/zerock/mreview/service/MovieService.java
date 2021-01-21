@@ -64,4 +64,6 @@ public interface MovieService {
 
         return movieDTO;
     }
+
+    MovieDTO getMovie(Long mno);
 }
