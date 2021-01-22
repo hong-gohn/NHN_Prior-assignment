@@ -29,7 +29,7 @@ public class MovieRepositoryTests {
     @Test
     public void insertMovies() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
-            Movie movie = Movie.builder().title("Moovie..." + i).build();
+            Movie movie = Movie.builder().title("Movie..." + i).build();
 
             System.out.println("--------------------------------------");
 

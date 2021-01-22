@@ -185,10 +185,10 @@
                     str += "<input type='hidden' name='imageDTOList["+i+"].uuid' value='"+target.data("uuid")+"'>";
                 });
 
-                $(".box").html(str);
+                //$(".box").html(str);
                 console.log(str);
 
-                $("form").submit();
+                $("form").append(str).submit();
             });
         </script>
 
