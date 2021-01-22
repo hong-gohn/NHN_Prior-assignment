@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewController {
 
-    private  final ReviewService reviewService;
+    private final ReviewService reviewService;
 
     @GetMapping("/{mno}/all")
     public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("mno") Long mno){
@@ -33,28 +33,28 @@ public class ReviewController {
         log.info("-------------add MovieReview-------------");
         log.info("reviewDTO: " + movieReviewDTO);
 
-        Long reviewNum = reviewService.register(movieReviewDTO);
+        Long reviewnum = reviewService.register(movieReviewDTO);
 
-        return new ResponseEntity<>(reviewNum, HttpStatus.OK);
+        return new ResponseEntity<>(reviewnum, HttpStatus.OK);
     }
 
-    @PutMapping("/{mno}/{reviewNum}")
-    public ResponseEntity<Long> modifyReview(@PathVariable Long reviewNum, @RequestBody ReviewDTO movieReviewDTO){
+    @PutMapping("/{mno}/{reviewnum}")
+    public ResponseEntity<Long> modifyReview(@PathVariable Long reviewnum, @RequestBody ReviewDTO movieReviewDTO){
         log.info("-------------modify MovieReview-------------");
         log.info("reviewDTO: " + movieReviewDTO);
 
         reviewService.modify(movieReviewDTO);
 
-        return new ResponseEntity<>(reviewNum, HttpStatus.OK);
+        return new ResponseEntity<>(reviewnum, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{mno}/{reviewNum}")
-    public ResponseEntity<Long> removeReview(@PathVariable Long reviewNum){
+    @DeleteMapping("/{mno}/{reviewnum}")
+    public ResponseEntity<Long> removeReview(@PathVariable Long reviewnum){
         log.info("-------------remove MovieReview-------------");
-        log.info("reviewNum: " + reviewNum);
+        log.info("reviewnum: " + reviewnum);
 
-        reviewService.remove(reviewNum);
+        reviewService.remove(reviewnum);
 
-        return new ResponseEntity<>(reviewNum, HttpStatus.OK);
+        return new ResponseEntity<>(reviewnum, HttpStatus.OK);
     }
 }
