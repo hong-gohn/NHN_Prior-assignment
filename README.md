@@ -1,5 +1,5 @@
 # NHN_Prior-assignment
-Hongjae Kim Prior assignment
+사전과제 Part1, Part2, Part4
 
 Part1 Project List
 - ex1
