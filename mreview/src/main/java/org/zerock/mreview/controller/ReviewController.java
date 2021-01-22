@@ -21,7 +21,7 @@ public class ReviewController {
     @GetMapping("/{mno}/all")
     public ResponseEntity<List<ReviewDTO>> getList(@PathVariable("mno") Long mno){
         log.info("-------------list-------------");
-        log.info("mno: " + mno);
+        log.info("MNO: " + mno);
 
         List<ReviewDTO> reviewDTOList = reviewService.getListOfMovie(mno);
 
